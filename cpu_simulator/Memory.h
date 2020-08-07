@@ -1,6 +1,7 @@
 #pragma once
 #include "Instruction.h"
 #include <fstream>
+using namespace std;
 
 //Instruction Memory
 class Memory

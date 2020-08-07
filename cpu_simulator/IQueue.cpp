@@ -1,5 +1,5 @@
 #include "IQueue.h"
-#include <iostream>
+
 
 IQueue::IQueue(){
 	num_entries = 0;

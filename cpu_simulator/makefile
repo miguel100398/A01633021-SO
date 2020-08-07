@@ -1,5 +1,5 @@
-OBJS	= main.o Execute.o FetchUnit.o Instruction.o IQueue.o Memory.o Pipeline.o RegisterFile.o Statistics.o
-SOURCE	= main.cpp Execute.cpp FetchUnit.cpp Instruction.cpp IQueue.cpp Memory.cpp Pipeline.cpp RegisterFile.cpp Statistics.cpp
+OBJS	= main.o Execute.o FetchUnit.o Instruction.o IQueue.o Memory.o Pipeline.o RegisterFile.o Statistics.o ReorderBuffer.o HelperFunctions.o
+SOURCE	= main.cpp Execute.cpp FetchUnit.cpp Instruction.cpp IQueue.cpp Memory.cpp Pipeline.cpp RegisterFile.cpp Statistics.cpp ReorderBuffer.cpp HelperFunctions.cpp
 HEADER	= CPUSimulator.h
 OUT	= tool
 CC	 = g++
@@ -30,6 +30,10 @@ RegisterFile.o: RegisterFile.cpp
 		$(CC) $(FLAGS) RegisterFile.cpp
 Statistics.o: Statistics.cpp
 		$(CC) $(FLAGS) Statistics.cpp
+ReorderBuffer.o: ReorderBuffer.cpp
+		$(CC) $(FLAGS) ReorderBuffer.cpp
+HelperFunctions.o: HelperFunctions.cpp
+		$(CC) $(FLAGS) HelperFunctions.cpp
 
 
 clean:

@@ -1,10 +1,11 @@
 #include "Pipeline.h"
 
 Pipeline::Pipeline(){
-
+    helperfunctions.PrintDebug("Creating Pipeline");
 };
 
 Pipeline::Pipeline(string program){
+    helperfunctions.PrintDebug("Creating Pipeline");
 	PC = 0;
 	stall_fetch = 0;
 	ROB_ID = 0;
@@ -95,25 +96,3 @@ void Pipeline::getStats(){
 	statistics.get_statistics();
 }
 
-main (){
-	string program;
-	
-	for(;;){
-		cout << "Introduce program to be executed: ";
-		cin >> program;
-		if (program == "exit"){
-			break;
-		}
-		Pipeline main_pipeline(program);
-		//Fetch first instruction to avoid ROB is empty
-		main_pipeline.Pipe_Fetch();
-		do {
-			main_pipeline.Pipe_Commit();
-			main_pipeline.Pipe_Execute();
-			main_pipeline.Pipe_Fetch();
-		} while(!main_pipeline.getFinish());
-		
-		main_pipeline.getStats();
-	}
-	
-}

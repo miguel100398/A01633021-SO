@@ -2,6 +2,7 @@
 #include "Instruction.h"
 #include <queue>
 #include "RegisterFile.h"
+#include <iostream>
 using namespace std;
 #define MAX_ENTRIES 10
 

@@ -7,6 +7,8 @@
 #include "ReorderBuffer.h"
 #include "HelperFunctions.h"
 #include "Statistics.h"
+#include "HelperFunctions.h"
+
 
 #define FETCH_WIDTH 1
 #define ISSUE_WIDTH 1
