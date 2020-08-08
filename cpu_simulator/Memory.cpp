@@ -3,10 +3,13 @@
 using namespace std;
 
 Memory::Memory() {
+    helperfunctions.PrintDebug("Creating Memory size 16");
 	instructionMemory = new Instruction[16];
+    helperfunctions.PrintDebug("Finished Creating Memory");
 };
 
 Memory::Memory(int size, string filename) {
+    helperfunctions.PrintDebug("Creating Memory size " + to_string(size) + " program " + filename);
 	instructionMemory = new Instruction[size];
 	unsigned int* unsignedValues = new unsigned int[size];
 	inputStream.open(filename, ifstream::in);
@@ -16,6 +19,7 @@ Memory::Memory(int size, string filename) {
 		instructionMemory[i] = Instruction(unsignedValues[i]);
 		i++;
 	}
+    helperfunctions.PrintDebug("Finished Creating Memory");
 };
 
 bool Memory::HasInstruction(int PC){

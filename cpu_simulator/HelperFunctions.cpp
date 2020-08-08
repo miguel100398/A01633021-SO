@@ -6,6 +6,6 @@ HelperFunctions::HelperFunctions(){
 
 void HelperFunctions::PrintDebug(string message){
     if (DEBUG){
-        cout << "-D- " << message;
+        cout << "-D- " << message << "\n";
     }
 }

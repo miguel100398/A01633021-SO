@@ -1,7 +1,9 @@
 #include "ReorderBuffer.h"
 
 ReorderBuffer::ReorderBuffer(){
+    helperfunctions.PrintDebug("Creating ReorderBuffer");
     num_entries = 0;
+    helperfunctions.PrintDebug("Finished Creating ReorderBuffer");
 }
 
 bool ReorderBuffer::isEmpty(){

@@ -2,7 +2,9 @@
 
 
 IQueue::IQueue(){
+    helperfunctions.PrintDebug("Creating IQueue");
 	num_entries = 0;
+    helperfunctions.PrintDebug("Finished Creating IQueue");
 }
 
 void IQueue::insertInstruction(Instruction newInst, long robId) 
@@ -21,19 +23,19 @@ void IQueue::insertInstruction(Instruction newInst, long robId)
 		tmp_list.valid1 = true;
 		tmp_list.src2 = -1;
 		tmp_list.valid2 = true;
-		registerfile.valid[newInst.getDest()] = false;
+		registerfile->valid[newInst.getDest()] = false;
 	}else{
 		tmp_list.operation = static_cast<op_t>(newInst.getOpcode());
 		tmp_list.src1 = newInst.getSrc1();
-		tmp_list.valid1 = registerfile.valid[tmp_list.src1];
+		tmp_list.valid1 = registerfile->valid[tmp_list.src1];
 		if (newInst.getType() == 'I'){
 			tmp_list.src2 = -1;
 			tmp_list.valid2 = true;
 		}else if (newInst.getType() == 'R'){
 			tmp_list.src2 = newInst.getSrc2();
-			tmp_list.valid2 = registerfile.valid[tmp_list.src2];
+			tmp_list.valid2 = registerfile->valid[tmp_list.src2];
 		}
-		registerfile.valid[newInst.getDest()] = false;
+		registerfile->valid[newInst.getDest()] = false;
 	}
 
 	tmp_list.instruction = newInst;
@@ -42,7 +44,7 @@ void IQueue::insertInstruction(Instruction newInst, long robId)
 	IQ.push_back(tmp_list);
 }
 
-void IQueue::setRegisterFile(RegisterFile newregisterfile){
+void IQueue::setRegisterFile(RegisterFile *newregisterfile){
 	registerfile = newregisterfile;
 }
 

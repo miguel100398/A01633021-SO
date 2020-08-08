@@ -2,6 +2,7 @@
 #include <string>
 #include <time.h>
 #include <queue> 
+#include "HelperFunctions.h"
 using namespace std;
 
 class Statistics{
@@ -10,6 +11,7 @@ class Statistics{
         queue<int> instructions_troghput;   //queue to store the throuput of the instructions executed
         queue<int> instructions_latency;    //queue to store the latency of the instructions
         queue<int> instructions_latency_start;
+        HelperFunctions helperfunctions;
     public:                                                                                          
         Statistics();
         void fetch_instructions(int num_fetch);

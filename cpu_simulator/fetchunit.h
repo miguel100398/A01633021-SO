@@ -3,6 +3,7 @@
 #include "Memory.h"
 #include "Instruction.h"
 #include <string>
+#include "HelperFunctions.h"
 using namespace std;
 
 #define MEMORY_SIZE 200
@@ -10,6 +11,7 @@ using namespace std;
 class FetchUnit {
 	private:
 		Memory memory;
+        HelperFunctions helperfunctions;
 	public:
 		FetchUnit();
 		FetchUnit(string program);

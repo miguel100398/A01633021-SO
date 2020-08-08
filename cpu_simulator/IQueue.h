@@ -1,8 +1,10 @@
 #pragma once
+#include "HelperFunctions.h"
 #include "Instruction.h"
 #include <queue>
 #include "RegisterFile.h"
 #include <iostream>
+#include "HelperFunctions.h"
 using namespace std;
 #define MAX_ENTRIES 10
 
@@ -22,7 +24,8 @@ class IQueue
 {
 	deque<iqueue_list_t> IQ;
 	int num_entries;
-	RegisterFile registerfile;
+	RegisterFile *registerfile;
+    HelperFunctions helperfunctions;
 public:
 	IQueue();
 
@@ -31,6 +34,6 @@ public:
 	bool checkNextValidity();
 	Instruction popInstruction();
 	void printIQ();
-	void setRegisterFile(RegisterFile newregisterfile);
+	void setRegisterFile(RegisterFile *newregisterfile);
 	bool HasEntries();
 };

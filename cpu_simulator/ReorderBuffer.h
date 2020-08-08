@@ -1,6 +1,7 @@
 #pragma once
 #include "Instruction.h"
 #include <queue> 
+#include "HelperFunctions.h"
 using namespace std;
 
 #define MAX_ENTRIES 10
@@ -16,6 +17,7 @@ class ReorderBuffer
     private:
         int num_entries;
         deque<rob_data_t> rob_list;
+        HelperFunctions helperfunctions;
     public:
         ReorderBuffer();
         bool isEmpty();

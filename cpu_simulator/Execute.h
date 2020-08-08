@@ -3,6 +3,7 @@
 #include "Instruction.h"
 #include "RegisterFile.h"
 #include "IQueue.h"
+#include "HelperFunctions.h"
 using namespace std;
 
 //typedef enum op_enum {ADD=0, SUB=1, MULTIPLY=2, DIVIDE=3, MODULO=4, BEQ=5, BNE=6, MOV=7, MOV_PRINT=8, JUMP=9} op_t;
@@ -17,10 +18,11 @@ private:
 	unsigned int result;
 	unsigned int dest;
 	char type;
-	RegisterFile registerfile;
+	RegisterFile *registerfile;
+    HelperFunctions helperfunctions;
 
 public:
-	Execute();
+    Execute();
 	unsigned int getResult(Instruction instruction, int PC);
-	void setRegisterfile(RegisterFile newregisterfile);
+	void setRegisterfile(RegisterFile *newregisterfile);
 };

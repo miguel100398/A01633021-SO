@@ -4,14 +4,13 @@ using namespace std;
 int main (){
 	string program;
 	
-	for(;;){
+	//for(;;){
 		cout << "Introduce program to be executed: ";
-		//cin >> program;
-		//if (program == "exit"){
-		//	break;
-		//}
-        cout << "antes de pipeline";
-		//Pipeline main_pipeline(program);
+		cin >> program;
+		if (program == "exit"){
+			//break;
+		}
+		Pipeline main_pipeline(program);
 		//Fetch first instruction to avoid ROB is empty
         /*
 		main_pipeline.Pipe_Fetch();
@@ -23,6 +22,6 @@ int main (){
 		
 		main_pipeline.getStats();
         */
-	}
+	//}
 	
 }

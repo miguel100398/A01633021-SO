@@ -1,4 +1,6 @@
 #include "Pipeline.h"
+#include "Execute.h"
+#include "RegisterFile.h"
 
 Pipeline::Pipeline(){
     helperfunctions.PrintDebug("Creating Pipeline");
@@ -9,10 +11,13 @@ Pipeline::Pipeline(string program){
 	PC = 0;
 	stall_fetch = 0;
 	ROB_ID = 0;
-	execute.setRegisterfile(registerfile);
-	iqueue.setRegisterFile(registerfile);
-	FetchUnit fetchunit(program);
+    cout << "seting rf execute\n";
+	execute.setRegisterfile(&registerfile);
+    cout << "setting rf iqueue\n";
+	iqueue.setRegisterFile(&registerfile);
+	//FetchUnit fetchunit(program);
 	finish = false;
+    helperfunctions.PrintDebug("Finished Creating Pipeline");
 }
 
 void Pipeline::Pipe_Commit(){

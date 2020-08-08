@@ -1,12 +1,15 @@
 #include "Instruction.h"
+#include <cstdio>
 using namespace std;
 
 Instruction::Instruction() {
-
+    helperfunctions.PrintDebug("Creating Instruction");
+    helperfunctions.PrintDebug("Finished Creating Instruction");
 };
 
 Instruction::Instruction(unsigned int unsignedVal)
 {
+    helperfunctions.PrintDebug("Creating Instruction with val " + to_string(unsignedVal));
 	exists = true;
 	unsigned int val = 2 ^ 31;
 	for (int i = 0; i < 31; i++)
@@ -37,6 +40,7 @@ Instruction::Instruction(unsigned int unsignedVal)
 		PSetup();
 		break;
 	}
+    helperfunctions.PrintDebug("Finished instruction created");
 }
 
 void Instruction::RSetup()

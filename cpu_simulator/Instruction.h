@@ -1,5 +1,6 @@
 #pragma once
 #include "RegisterFile.h"
+#include "HelperFunctions.h"
 #include <iostream>
 
 class Instruction 
@@ -13,6 +14,7 @@ private:
 	int src1;
 	int src2;
 	unsigned int immediate;
+    HelperFunctions helperfunctions;
 	
 	void RSetup();
 	void ISetup();

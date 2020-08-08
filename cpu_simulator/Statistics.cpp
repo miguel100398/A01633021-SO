@@ -2,6 +2,8 @@
 #include <iostream>
 
 Statistics::Statistics(){
+    helperfunctions.PrintDebug("Creating Statistics");
+    helperfunctions.PrintDebug("Finished Creating Statistics");
 }
 
 
@@ -52,8 +54,8 @@ void Statistics::get_statistics(){
     average_latency = accum_latencies/num_latencies;
     average_trougput = accum_trhoughput/num_troughput;
 
-    cout << "The average latency is %f\n", average_latency;
-    cout << "The average troughput is %f\n", average_trougput;
+    cout << "The average latency is " + to_string(average_latency) + "\n";
+    cout << "The average troughput is " + to_string(average_trougput) + "\n";
 
 }
 
