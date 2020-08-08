@@ -10,11 +10,12 @@ using namespace std;
 
 class FetchUnit {
 	private:
-		Memory memory;
         HelperFunctions helperfunctions;
 	public:
+        Memory memory;
 		FetchUnit();
 		FetchUnit(string program);
+        void initMem(int size, string program);
 		Instruction FetchInstruction(int PC);
 		bool HasInstruction(int PC);
 };

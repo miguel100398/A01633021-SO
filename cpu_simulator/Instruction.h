@@ -14,7 +14,7 @@ private:
 	int src1;
 	int src2;
 	unsigned int immediate;
-    HelperFunctions helperfunctions;
+        HelperFunctions helperfunctions;
 	
 	void RSetup();
 	void ISetup();
@@ -34,6 +34,7 @@ public:
 	bool getSrc1Valid(RegisterFile reg);
 	bool getSrc2Valid(RegisterFile reg);
 	unsigned int getImmediate();
+	string InsToString();
 
 	//friend ostream& operator<<(ostream& os, Instruction& inst);
 };

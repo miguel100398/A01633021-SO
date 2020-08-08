@@ -9,6 +9,7 @@ IQueue::IQueue(){
 
 void IQueue::insertInstruction(Instruction newInst, long robId) 
 {
+    helperfunctions.PrintDebug("Introducing Instruction in Iqueue: " + newInst.InsToString());
 	iqueue_list_t tmp_list;
 	
 	if (newInst.getType() == 'J'){
@@ -62,6 +63,7 @@ bool IQueue::checkNextValidity()
 Instruction IQueue::popInstruction()
 {
 	Instruction temp = IQ.front().instruction;
+    helperfunctions.PrintDebug("IQueue Popping instruction " + temp.InsToString());
 	IQ.pop_front();
 	num_entries--;
 	return temp;

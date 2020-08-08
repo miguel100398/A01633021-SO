@@ -18,3 +18,7 @@ Instruction FetchUnit::FetchInstruction(int PC){
 bool FetchUnit::HasInstruction(int PC){
 	return memory.HasInstruction(PC);
 }
+
+void FetchUnit::initMem(int size, string program){
+    memory.initMem(size, program);
+}

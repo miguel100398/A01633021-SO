@@ -13,6 +13,7 @@ Instruction::Instruction(unsigned int unsignedVal)
     helperfunctions.PrintDebug("Creating Instruction with val " + to_string(unsignedVal));
 	exists = true;
 	unsigned int val = pow(2,31);
+	
 	for (int i = 0; i < 31; i++)
 	{
 		bits[31 - i] = unsignedVal >= val;
@@ -20,7 +21,19 @@ Instruction::Instruction(unsigned int unsignedVal)
 		{
 			unsignedVal -= val;
 		}
+		val /= 2;
 	}
+	cout << endl;
+	
+	for (int i = 0; i < 32; i++) 
+	{
+		cout << bits[31 - i];
+		if (i == 1 || i == 5 || i == 10 || i == 15 || (i == 20 && bits[31] == 0 && bits[30] == 0)) {
+			cout << " ";
+		}
+	}
+	cout << endl;
+	
 	int typeInt = bits[31] * 2 + bits[30];
 	switch (typeInt)
 	{
@@ -47,83 +60,153 @@ Instruction::Instruction(unsigned int unsignedVal)
 void Instruction::RSetup()
 {
 	int temp = 0;
+	int tempValue = 8;
 	for (int i = 0; i < 4; i++)
 	{
-		temp += 2 ^ (3 - i) * bits[29 - i];
+		if (bits[29 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	opcode = temp;
 	temp = 0;
+	tempValue = 16;
 	for (int i = 0; i < 5; i++)
 	{
-		temp += 2 ^ (4 - i) * bits[25 - i];
+		if (bits[25 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	dest = temp;
 	temp = 0;
+	tempValue = 16;
 	for (int i = 0; i < 5; i++)
 	{
-		temp += 2 ^ (4 - i) * bits[20 - i];
+		if (bits[20 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	src1 = temp;
 	temp = 0;
+	tempValue = 16;
 	for (int i = 0; i < 5; i++)
 	{
-		temp += 2 ^ (4 - i) * bits[15 - i];
+		if (bits[15 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	src2 = temp;
+	cout << "Type: " << type << endl;
+	cout << "OpCode: " << opcode << endl;
+	cout << "dest: " << dest << endl;
+	cout << "src1: " << src1 << endl;
+	cout << "src2: " << src2 << endl;
 }
 
 void Instruction::ISetup()
 {
 	int temp = 0;
+	int tempValue = 8;
 	for (int i = 0; i < 4; i++)
 	{
-		temp += 2 ^ (3 - i) * bits[29 - i];
+		if (bits[29 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	opcode = temp;
 	temp = 0;
+	tempValue = 16;
 	for (int i = 0; i < 5; i++)
 	{
-		temp += 2 ^ (4 - i) * bits[25 - i];
+		if (bits[25 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	dest = temp;
 	temp = 0;
+	tempValue = 16;
 	for (int i = 0; i < 5; i++)
 	{
-		temp += 2 ^ (4 - i) * bits[20 - i];
+		if (bits[20 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	src1 = temp;
 	unsigned int temp2 = 0;
+	unsigned int tempValue2 = 32768; //(2^15)
 	for (int i = 0; i < 16; i++)
 	{
-		temp2 += 2 ^ (15 - i) * bits[15 - i];
+		if (bits[15 - i])
+		{
+			temp2 += tempValue2;
+		}
+		tempValue2 /= 2;
 	}
 	immediate = temp2;
+	cout << "Type: " << type << endl;
+	cout << "OpCode: " << opcode << endl;
+	cout << "dest: " << dest << endl;
+	cout << "src1: " << src1 << endl;
+	cout << "immediate: " << immediate << endl;
 }
 
 void Instruction::JSetup()
 {
 	unsigned int temp = 0;
+	unsigned int tempValue = 536870912; //(2^29)
 	for (int i = 0; i < 30; i++)
 	{
-		temp += 2 ^ (29 - i) * bits[29 - i];
+		if (bits[29 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
-	opcode = temp;
+	address = temp;
+	cout << "Type: " << type << endl;
+	cout << "address: " << address << endl;
 }
 
 void Instruction::PSetup()
 {
 	int temp = 0;
+	int tempValue = 8;
 	for (int i = 0; i < 4; i++)
 	{
-		temp += 2 ^ (3 - i) * bits[29 - i];
+		if (bits[29 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	opcode = temp;
 	temp = 0;
+	tempValue = 16;
 	for (int i = 0; i < 5; i++)
 	{
-		temp += 2 ^ (4 - i) * bits[25 - i];
+		if (bits[25 - i])
+		{
+			temp += tempValue;
+		}
+		tempValue /= 2;
 	}
 	dest = temp;
+	cout << "Type: " << type << endl;
+	cout << "OpCode: " << opcode << endl;
+	cout << "dest: " << dest << endl;
 }
 
 char Instruction::getType()
@@ -204,6 +287,11 @@ unsigned int Instruction::getImmediate()
 	}
 	else
 	{
+		cout << "Enter a value: ";
+		string immediateString;
+		cin >> immediateString;
+		unsigned long immValue = stoul(immediateString, 0, 10);
+		immediate = immValue;
 		return immediate;
 	}
 }
@@ -244,4 +332,16 @@ ostream& operator<<(ostream& os, Instruction& inst)
 	}
 	
 	return os;
+}
+
+string Instruction::InsToString(){
+    string tmp;
+    string tmp2(1,getType());
+    tmp = "Type " + tmp2;
+    tmp += " Opcode " + to_string(getOpcode());
+    tmp += " Address " + to_string(getAddress());
+    tmp += " Dest " + to_string(getDest());
+    tmp += " src1 " + to_string(getSrc1());
+    tmp += " src2 " + to_string(getSrc2());
+    return tmp;
 }

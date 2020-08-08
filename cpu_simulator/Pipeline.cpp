@@ -15,12 +15,13 @@ Pipeline::Pipeline(string program){
 	execute.setRegisterfile(&registerfile);
     cout << "setting rf iqueue\n";
 	iqueue.setRegisterFile(&registerfile);
-	FetchUnit fetchunit(program);
+	fetchunit.initMem(100, program);
 	finish = false;
     helperfunctions.PrintDebug("Finished Creating Pipeline");
 }
 
 void Pipeline::Pipe_Commit(){
+    helperfunctions.PrintDebug("Init Commit");
 	unsigned char instructions_commited = 0;
 	
 	for (int i = 0; i<COMMIT_WIDTH; i++){
@@ -32,9 +33,11 @@ void Pipeline::Pipe_Commit(){
 	}	
 	
 	statistics.commit_instructions(instructions_commited);		//Update statistics
+    helperfunctions.PrintDebug("Finish commit");
 }
 
 void Pipeline::Pipe_Execute(){
+    helperfunctions.PrintDebug("Init Execute");
 	unsigned char instructions_executed = 0;
 	unsigned char execute_result = 0;
 	
@@ -44,6 +47,7 @@ void Pipeline::Pipe_Execute(){
 			if (iqueue.checkNextValidity()){
 				Instruction instruction = iqueue.popInstruction();
 				PC =  execute.getResult(instruction, PC);
+                helperfunctions.PrintDebug("Instruction executed, new PC is " + to_string(PC));
 				ROB.setCompleteInstruction(instruction.RobId);
 				instructions_executed++;
 			}else{
@@ -55,10 +59,11 @@ void Pipeline::Pipe_Execute(){
 	}
 
 	statistics.execute_instructions(instructions_executed);
-	
+	helperfunctions.PrintDebug("Finish Execute");
 }
 
 void Pipeline::Pipe_Fetch(){
+    helperfunctions.PrintDebug("Init fetch");
 	unsigned char instructions_fetched = 0;
 	Instruction instruction;
 	for (int i = 0; i<FETCH_WIDTH; i++){
@@ -90,6 +95,7 @@ void Pipeline::Pipe_Fetch(){
 		};
 	}
 	statistics.fetch_instructions(instructions_fetched);		//Update statistics
+    helperfunctions.PrintDebug("Finish fetch");
 }
 
 bool Pipeline::getFinish(){

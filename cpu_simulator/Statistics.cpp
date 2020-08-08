@@ -31,6 +31,7 @@ void Statistics::execute_instructions(int num_execute){
 }
 
 void Statistics::get_statistics(){
+    
     int num_latencies;
     time_t accum_latencies;
     int num_troughput;
@@ -41,19 +42,20 @@ void Statistics::get_statistics(){
     num_troughput = instructions_troghput.size();
     accum_latencies = 0;
     accum_trhoughput = 0;
-
+    
     while (!instructions_latency.empty()){
         accum_latencies += instructions_latency.front();
         instructions_latency.pop();
     }
+
     while (!instructions_troghput.empty()){
         accum_trhoughput += instructions_troghput.front();
         instructions_troghput.pop();
     }
-
-    average_latency = accum_latencies/num_latencies;
-    average_trougput = accum_trhoughput/num_troughput;
-
+    
+    average_latency = (float)accum_latencies/num_latencies;
+    average_trougput = (float)accum_trhoughput/num_troughput;
+    
     cout << "The average latency is " + to_string(average_latency) + "\n";
     cout << "The average troughput is " + to_string(average_trougput) + "\n";
 

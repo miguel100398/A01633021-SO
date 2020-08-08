@@ -11,14 +11,16 @@ class Memory
 {
 private:
 	ifstream inputStream;
-	Instruction* instructionMemory;
     HelperFunctions helperfunctions;
+    int number_instructions;
 public:
 	Memory();
+    Instruction* instructionMemory;
 	Memory(int size, string filename);
 	~Memory();
 	Instruction getMemory(int PC);
 	bool HasInstruction(int PC);
+    void initMem(int size, string program);
 
 	//program memory
 };
