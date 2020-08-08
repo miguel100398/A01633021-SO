@@ -287,11 +287,11 @@ unsigned int Instruction::getImmediate()
 	}
 	else
 	{
-		cout << "Enter a value: ";
-		string immediateString;
-		cin >> immediateString;
-		unsigned long immValue = stoul(immediateString, 0, 10);
-		immediate = immValue;
+		//cout << "Enter a value: ";
+		//string immediateString;
+		//cin >> immediateString;
+		//unsigned long immValue = stoul(immediateString, 0, 10);
+		//immediate = immValue;
 		return immediate;
 	}
 }

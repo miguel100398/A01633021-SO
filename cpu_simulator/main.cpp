@@ -22,10 +22,11 @@ int main (){
 			main_pipeline.Pipe_Commit();
 			main_pipeline.Pipe_Execute();
 			main_pipeline.Pipe_Fetch();
+            count_pipe++;
 		} while(!main_pipeline.getFinish());
 		
 		main_pipeline.getStats();
-        
+        count_program++;
 	}
 	
 }
