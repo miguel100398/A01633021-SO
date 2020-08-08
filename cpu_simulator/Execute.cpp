@@ -54,19 +54,20 @@ unsigned int Execute::getResult(Instruction instruction, int PC)
             registerfile->r[dest] = operand1 % operand2;
             break;
         case BEQ:
-            registerfile->r[dest] = registerfile->r[dest] - operand1;
-            if (registerfile->r[dest] == 0){
+            //registerfile->r[dest] = registerfile->r[dest] - operand1;
+            if (registerfile->r[dest] == operand1){
                 return operand2;
             }else{
-                return PC+1;
+                return PC;//PC+1;
             }
             break;
         case BNE:
-            registerfile->r[dest] = registerfile->r[dest] - operand1;
-            if (registerfile->r[dest] != 0){
+            //registerfile->r[dest] = registerfile->r[dest] - operand1;
+            //if (registerfile->r[dest] != 0){
+            if (registerfile->r[dest] != operand1){
                 return operand2;
             }else{
-                return PC+1;
+                return PC;//PC+1;
             }
             break;
         case MOV:
@@ -75,7 +76,7 @@ unsigned int Execute::getResult(Instruction instruction, int PC)
         case MOV_PRINT:
             //idk if this goes here we'll figure it out eventually
             registerfile->r[dest] = operand1;
-            cout << "result = " << operand1;
+            cout << "result = " + to_string(operand1) + "\n";
             break;
         case JUMP:
             return operand1;
@@ -83,8 +84,8 @@ unsigned int Execute::getResult(Instruction instruction, int PC)
         }
     }    
     helperfunctions.PrintDebug("Executed dest["+to_string(dest)+"]= " +to_string(registerfile->r[dest])+" operand1 "+to_string(operand1)+" operand2 "+to_string(operand2));
-    string held;
-    cin >> held;
+    //string held;
+    //cin >> held;
 	registerfile->valid[dest] = true;
 	return PC;
 }
