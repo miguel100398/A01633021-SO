@@ -4,8 +4,6 @@
 using namespace std;
 
 Instruction::Instruction() {
-    helperfunctions.PrintDebug("Creating Instruction");
-    helperfunctions.PrintDebug("Finished Creating Instruction");
 };
 
 Instruction::Instruction(unsigned int unsignedVal)
@@ -217,7 +215,7 @@ char Instruction::getType()
 int Instruction::getOpcode()
 {
 	if (type == 'J') {
-		cout << "No opcode associated with this instruction type" << endl;
+		//cout << "No opcode associated with this instruction type" << endl;
 		return 0;
 	}
 	else
@@ -230,7 +228,7 @@ int Instruction::getAddress()
 {
 	if (type != 'J')
 	{
-		cout << "No address associated with this instruction type" << endl;
+		//cout << "No address associated with this instruction type" << endl;
 		return 0;
 	}
 	else
@@ -243,7 +241,7 @@ int Instruction::getDest()
 {
 	if (type == 'J')
 	{
-		cout << "No dest associated with this instruction type" << endl;
+		//cout << "No dest associated with this instruction type" << endl;
 		return 0;
 	}
 	else
@@ -256,7 +254,7 @@ int Instruction::getSrc1()
 {
 	if (type != 'R' && type != 'I')
 	{
-		cout << "No src1 associated with this instruction type" << endl;
+		//cout << "No src1 associated with this instruction type" << endl;
 		return 0;
 	}
 	else
@@ -269,7 +267,7 @@ int Instruction::getSrc2()
 {
 	if (type != 'R')
 	{
-		cout << "No src2 associated with this instruction type" << endl;
+		//cout << "No src2 associated with this instruction type" << endl;
 		return 0;
 	}
 	else
@@ -282,7 +280,7 @@ unsigned int Instruction::getImmediate()
 {
 	if (type != 'I')
 	{
-		cout << "No immediate associated with this instruction type" << endl;
+		//cout << "No immediate associated with this instruction type" << endl;
 		return 0;
 	}
 	else

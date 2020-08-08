@@ -20,7 +20,7 @@ unsigned int Execute::getResult(Instruction instruction, int PC)
 		dest = instruction.getDest();
 	}else if (type == 'I'){
 		operand1 = registerfile->r[instruction.getSrc1()];
-		operand2 = registerfile->r[instruction.getImmediate()];
+		operand2 = instruction.getImmediate();
 		opcode = static_cast<op_t>(instruction.getOpcode());
 		dest = instruction.getDest();
 	}else if (type == 'J'){
@@ -82,6 +82,9 @@ unsigned int Execute::getResult(Instruction instruction, int PC)
             break;
         }
     }    
+    helperfunctions.PrintDebug("Executed dest["+to_string(dest)+"]= " +to_string(registerfile->r[dest])+" operand1 "+to_string(operand1)+" operand2 "+to_string(operand2));
+    string held;
+    cin >> held;
 	registerfile->valid[dest] = true;
 	return PC;
 }
