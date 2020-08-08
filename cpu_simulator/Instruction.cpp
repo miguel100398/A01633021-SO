@@ -1,5 +1,6 @@
 #include "Instruction.h"
 #include <cstdio>
+#include <math.h>
 using namespace std;
 
 Instruction::Instruction() {
@@ -11,7 +12,7 @@ Instruction::Instruction(unsigned int unsignedVal)
 {
     helperfunctions.PrintDebug("Creating Instruction with val " + to_string(unsignedVal));
 	exists = true;
-	unsigned int val = 2 ^ 31;
+	unsigned int val = pow(2,31);
 	for (int i = 0; i < 31; i++)
 	{
 		bits[31 - i] = unsignedVal >= val;

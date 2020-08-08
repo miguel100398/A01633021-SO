@@ -12,13 +12,15 @@ Memory::Memory(int size, string filename) {
     helperfunctions.PrintDebug("Creating Memory size " + to_string(size) + " program " + filename);
 	instructionMemory = new Instruction[size];
 	unsigned int* unsignedValues = new unsigned int[size];
-	inputStream.open(filename, ifstream::in);
+	inputStream.open(filename, ios::in);
 	int i = 0;
-	while (!inputStream.eof()) {
-		inputStream >> *unsignedValues;
-		instructionMemory[i] = Instruction(unsignedValues[i]);
-		i++;
-	}
+    string word;
+    while (getline(inputStream,word,',')){
+        unsignedValues[i] = stoul(word);
+        instructionMemory[i] = Instruction(unsignedValues[i]);
+        i++;
+    }
+
     helperfunctions.PrintDebug("Finished Creating Memory");
 };
 

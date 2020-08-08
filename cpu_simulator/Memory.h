@@ -3,6 +3,7 @@
 #include "Instruction.h"
 #include <fstream>
 #include "HelperFunctions.h"
+#include <vector>
 using namespace std;
 
 //Instruction Memory

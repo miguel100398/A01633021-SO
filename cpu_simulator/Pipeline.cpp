@@ -15,7 +15,7 @@ Pipeline::Pipeline(string program){
 	execute.setRegisterfile(&registerfile);
     cout << "setting rf iqueue\n";
 	iqueue.setRegisterFile(&registerfile);
-	//FetchUnit fetchunit(program);
+	FetchUnit fetchunit(program);
 	finish = false;
     helperfunctions.PrintDebug("Finished Creating Pipeline");
 }
