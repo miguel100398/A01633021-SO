@@ -23,11 +23,11 @@ void backwardList::remove_from_list(int x){
     auto it = int_list.end();
     it--;
     for (int i =int_list.size(); i>0; i--){
-    if (find_first(tmp.front())==x){
+    if (find_first(tmp.back())==x){
             int_list.erase(it);
             break;
         }
-        tmp.pop_front();
+        tmp.pop_back();
         it--;
     }
 }
@@ -42,17 +42,21 @@ void backwardList::print_list(){
 }
 
 int main(void){
-    int remove;
-    const int tmp[10] = {456, 92, 361, 416, 915, 647, 60, 778, 35, 406};
-    backwardList *backwardlist= new backwardList();
-    backwardlist->insert(tmp);
-    backwardlist->print_list();
-    cout <<"Enter digit";
-    cin >> remove;
-    if (remove<0||remove>9){
-        cout << "Error";
-    }else{
-        backwardlist->remove_from_list(remove);
+    try{
+        int remove;
+        const int tmp[10] = {456, 92, 361, 416, 915, 647, 60, 778, 35, 406};
+        backwardList *backwardlist= new backwardList();
+        backwardlist->insert(tmp);
         backwardlist->print_list();
+        cout <<"Enter digit";
+        cin >> remove;
+        if (remove<0||remove>9){
+             throw invalid_argument("Invalid argument.");
+        }else{
+            backwardlist->remove_from_list(remove);
+            backwardlist->print_list();
+        }
+    }catch (std::invalid_argument ex){
+        cout<< "Invalid argument exception \n";
     }
 }
